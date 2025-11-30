@@ -1,7 +1,6 @@
 # GardenGod
 
-A robust, high-performance garden management application built with Python.
-(JK this is AI SLOP but I want to plan my garden next spring and this seems like a nice way to do it.)
+This is AI SLOP but I want to plan my garden next spring and this seems like a nice way to do it.
 
 ## Overview
 
