@@ -1,6 +1,6 @@
 # GardenGod
 
-This is AI SLOP but I want to plan my garden next spring and this seems like a nice way to do it.
+This is AI SLOP but I want to plan my garden and this seems like a nice way to do it.
 
 ## Overview
 
