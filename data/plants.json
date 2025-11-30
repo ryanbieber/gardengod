@@ -1,0 +1,1430 @@
+[
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "spacing_per_sqft": 1,
+    "companions": ["asparagus", "basil", "bean", "borage", "carrot", "celery", "chive", "garlic", "leek", "lettuce", "marigold", "nasturtium", "onion", "oregano", "parsley", "pepper"],
+    "antagonists": ["cabbage", "fennel", "potato", "corn"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [60, 85],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_after_last_frost": 2,
+      "direct_sow": false,
+      "notes": "Needs warm soil (60°F+). Start indoors 6-8 weeks before last frost."
+    },
+    "care": {
+      "watering": "Water deeply at the base, 1-2 inches per week. Avoid wetting foliage.",
+      "watering_frequency": "Every 2-3 days, daily in hot weather",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed every 2 weeks with balanced fertilizer once fruiting begins.",
+      "pruning": "Remove suckers for indeterminate varieties. Prune lower leaves touching soil.",
+      "pests": "Watch for hornworms, aphids, and blight. Remove affected leaves promptly.",
+      "harvesting": "Harvest when fully colored but still firm. Can ripen green tomatoes indoors.",
+      "tips": ["Stake or cage plants early", "Mulch to prevent soil splash", "Water consistently to prevent blossom end rot", "Plant deeply - roots grow from buried stem"]
+    }
+  },
+  {
+    "id": "basil",
+    "name": "Basil",
+    "spacing_per_sqft": 4,
+    "companions": ["asparagus", "chamomile", "oregano", "pepper", "tomato"],
+    "antagonists": ["rue", "sage"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [50, 75],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_after_last_frost": 2,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "succession_planting_weeks": 3,
+      "notes": "Very frost sensitive. Can direct sow after soil warms to 70°F."
+    },
+    "care": {
+      "watering": "Keep soil consistently moist but not waterlogged. About 1 inch per week.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Light feeder. Apply diluted liquid fertilizer monthly.",
+      "pruning": "Pinch off flower buds to extend harvest. Cut stems above leaf pairs.",
+      "pests": "Susceptible to aphids, slugs, and Japanese beetles.",
+      "harvesting": "Harvest leaves regularly from the top to encourage bushy growth.",
+      "tips": ["Pinch flowers immediately to prevent bolting", "Harvest in morning for best flavor", "Never refrigerate fresh basil", "Plant near tomatoes for mutual benefit"]
+    }
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "spacing_per_sqft": 16,
+    "companions": ["bean", "chive", "leek", "lettuce", "onion", "pea", "rosemary", "sage", "tomato"],
+    "antagonists": ["dill", "parsnip"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [60, 80],
+      "direct_sow_weeks_before_last_frost": 3,
+      "succession_planting_weeks": 3,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Direct sow only - doesn't transplant well. Keep soil moist for germination."
+    },
+    "care": {
+      "watering": "Keep soil evenly moist, especially during germination. 1 inch per week.",
+      "watering_frequency": "Every 2-3 days, keep surface moist until sprouted",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Low nitrogen - too much causes forked roots. Add compost before planting.",
+      "pruning": "Thin seedlings to proper spacing when 2 inches tall.",
+      "pests": "Carrot rust fly, wireworms. Use row covers to prevent flies.",
+      "harvesting": "Pull when shoulders are 1/2 to 3/4 inch diameter. Loosen soil first.",
+      "tips": ["Mix seeds with sand for even sowing", "Keep soil loose and rock-free for straight roots", "Mulch to keep soil cool and moist", "Fall carrots are sweetest after frost"]
+    }
+  },
+  {
+    "id": "onion",
+    "name": "Onion",
+    "spacing_per_sqft": 9,
+    "companions": ["beet", "broccoli", "cabbage", "carrot", "chamomile", "cucumber", "dill", "lettuce", "pepper", "strawberry", "tomato"],
+    "antagonists": ["bean", "pea"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [90, 120],
+      "start_indoors_weeks_before_last_frost": 10,
+      "transplant_weeks_before_last_frost": 4,
+      "direct_sow": true,
+      "direct_sow_weeks_before_last_frost": 4,
+      "notes": "Start very early indoors (10-12 weeks). Can also plant sets 4 weeks before last frost."
+    },
+    "care": {
+      "watering": "1 inch per week. Stop watering when tops start to fall over.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed with nitrogen-rich fertilizer every 2-3 weeks until bulbing.",
+      "pruning": "None needed. Don't cut green tops - they feed the bulb.",
+      "pests": "Onion maggots, thrips. Rotate crops and use row covers.",
+      "harvesting": "Harvest when 50% of tops have fallen. Cure in dry, shaded area for 2 weeks.",
+      "tips": ["Choose correct day-length variety for your latitude", "Mulch to conserve moisture", "Bend tops over gently to speed maturity", "Store only fully cured onions"]
+    }
+  },
+  {
+    "id": "lettuce",
+    "name": "Lettuce",
+    "spacing_per_sqft": 4,
+    "companions": ["bean", "beet", "broccoli", "carrot", "cucumber", "dill", "kohlrabi", "nasturtium", "onion", "radish", "strawberry", "thyme"],
+    "antagonists": ["cabbage", "celery"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [30, 60],
+      "direct_sow_weeks_before_last_frost": 4,
+      "succession_planting_weeks": 2,
+      "fall_planting_weeks_before_first_frost": 8,
+      "notes": "Cool season crop. Bolts in heat. Plant every 2 weeks for continuous harvest."
+    },
+    "care": {
+      "watering": "Keep consistently moist. About 1-2 inches per week. Shallow roots dry quickly.",
+      "watering_frequency": "Daily in hot weather, every 2 days normally",
+      "sunlight": "Partial shade in summer, full sun in spring/fall (4-6 hours)",
+      "fertilizing": "Light feeder. Side-dress with compost or diluted fertilizer.",
+      "pruning": "Cut outer leaves for continuous harvest (cut-and-come-again).",
+      "pests": "Aphids, slugs, rabbits. Use row covers and copper tape for slugs.",
+      "harvesting": "Harvest in morning when leaves are crisp. Cut or pick outer leaves first.",
+      "tips": ["Provide afternoon shade in summer", "Bolt-resistant varieties for warm weather", "Soak seeds in cold water before summer sowing", "Mulch to keep roots cool"]
+    }
+  },
+  {
+    "id": "pepper",
+    "name": "Pepper",
+    "spacing_per_sqft": 1,
+    "companions": ["basil", "carrot", "onion", "parsley", "tomato"],
+    "antagonists": ["fennel", "kohlrabi"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [60, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_after_last_frost": 2,
+      "direct_sow": false,
+      "notes": "Start indoors 8-10 weeks before last frost. Needs warm soil (65°F+)."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Consistent moisture prevents blossom end rot.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed every 2-3 weeks once flowering. Use low-nitrogen fertilizer.",
+      "pruning": "Pinch first flowers to encourage stronger plants. Remove suckers optionally.",
+      "pests": "Aphids, hornworms, pepper maggots. Check undersides of leaves.",
+      "harvesting": "Cut peppers with scissors. Green peppers ripen to red/yellow if left longer.",
+      "tips": ["Hot peppers need more heat and stress for spiciness", "Support heavy plants with stakes", "Mulch to keep roots warm", "Harvest regularly to encourage production"]
+    }
+  },
+  {
+    "id": "bean",
+    "name": "Bean (Bush)",
+    "spacing_per_sqft": 9,
+    "companions": ["beet", "cabbage", "carrot", "cauliflower", "celery", "corn", "cucumber", "eggplant", "pea", "potato", "radish", "strawberry"],
+    "antagonists": ["chive", "garlic", "leek", "onion"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [50, 60],
+      "direct_sow_weeks_after_last_frost": 1,
+      "succession_planting_weeks": 2,
+      "notes": "Direct sow after last frost. Soil should be 60°F+. Don't start indoors."
+    },
+    "care": {
+      "watering": "1 inch per week. Water at base to prevent disease. More during flowering.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "None needed - beans fix nitrogen. Too much causes leafy growth, few beans.",
+      "pruning": "None needed for bush beans.",
+      "pests": "Mexican bean beetles, aphids. Pick beetles by hand. Rotate crops.",
+      "harvesting": "Pick when pods snap cleanly. Harvest every 2-3 days for continuous production.",
+      "tips": ["Don't work in wet bean plants (spreads disease)", "Inoculate seeds with rhizobia for better yields", "Plant in blocks for better pollination", "Leave roots in soil - they add nitrogen"]
+    }
+  },
+  {
+    "id": "pole_bean",
+    "name": "Bean (Pole)",
+    "spacing_per_sqft": 4,
+    "companions": ["beet", "cabbage", "carrot", "cauliflower", "celery", "corn", "cucumber", "eggplant", "pea", "potato", "radish", "strawberry"],
+    "antagonists": ["chive", "garlic", "leek", "onion"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [60, 70],
+      "direct_sow_weeks_after_last_frost": 1,
+      "notes": "Direct sow after last frost. Needs trellis or support."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Critical during flowering and pod development.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Beans fix nitrogen - no fertilizer needed.",
+      "pruning": "Pinch growing tips when vines reach top of support.",
+      "pests": "Mexican bean beetles, aphids, spider mites.",
+      "harvesting": "Harvest every 2-3 days. Pods toughen if left too long.",
+      "tips": ["Install trellis before planting", "Train vines up support initially", "Produce longer than bush beans", "Great for small spaces - grow up, not out"]
+    }
+  },
+  {
+    "id": "pea",
+    "name": "Pea",
+    "spacing_per_sqft": 8,
+    "companions": ["bean", "carrot", "celery", "corn", "cucumber", "eggplant", "lettuce", "parsley", "radish", "spinach", "strawberry", "turnip"],
+    "antagonists": ["chive", "garlic", "leek", "onion"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [55, 70],
+      "direct_sow_weeks_before_last_frost": 6,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Plant as early as soil can be worked. Cool season crop - stops producing in heat."
+    },
+    "care": {
+      "watering": "1 inch per week. Consistent moisture during flowering is critical.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "No nitrogen needed - peas fix their own. Add phosphorus for flowers.",
+      "pruning": "Pinch tips to encourage branching.",
+      "pests": "Aphids, powdery mildew. Good air circulation helps prevent disease.",
+      "harvesting": "Pick daily when ready. Regular picking encourages more production.",
+      "tips": ["Soak seeds overnight before planting", "Provide support even for 'dwarf' varieties", "Harvest snow peas when flat, snap peas when plump", "Pull plants when production stops - compost or till under"]
+    }
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "spacing_per_sqft": 2,
+    "companions": ["bean", "celery", "corn", "dill", "kohlrabi", "lettuce", "nasturtium", "onion", "pea", "radish", "sunflower", "tomato"],
+    "antagonists": ["melon", "potato", "sage", "mint"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [50, 70],
+      "start_indoors_weeks_before_last_frost": 3,
+      "transplant_weeks_after_last_frost": 2,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Can start indoors 3-4 weeks early for head start. Needs warm soil (70°F+)."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Consistent moisture prevents bitter fruit.",
+      "watering_frequency": "Daily in hot weather, every 2 days normally",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed every 2-3 weeks with balanced fertilizer once vines start running.",
+      "pruning": "Trim lateral vines to focus energy on main vine.",
+      "pests": "Cucumber beetles, powdery mildew. Use row covers until flowering.",
+      "harvesting": "Pick cucumbers when 6-8 inches. Don't let them turn yellow.",
+      "tips": ["Grow on trellis for straight fruit and disease prevention", "Pick daily - overripe cukes stop production", "Bitter taste means water stress", "Plant dill nearby to attract beneficial wasps"]
+    }
+  },
+  {
+    "id": "squash",
+    "name": "Squash",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "corn", "marigold", "nasturtium", "pea", "radish", "sunflower"],
+    "antagonists": ["potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [45, 65],
+      "start_indoors_weeks_before_last_frost": 3,
+      "transplant_weeks_after_last_frost": 2,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Summer squash. Can start indoors but direct sow is fine."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Water at base to prevent powdery mildew.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Heavy feeder. Side-dress with compost monthly or use balanced fertilizer.",
+      "pruning": "Remove dead leaves. Trim some leaves to improve air circulation.",
+      "pests": "Squash bugs, vine borers, powdery mildew. Check daily for eggs.",
+      "harvesting": "Harvest summer squash young and tender (6-8 inches).",
+      "tips": ["Hand pollinate in morning if bees are scarce", "Place cardboard under fruit to prevent rot", "One plant produces 6-10 lbs", "Check under leaves daily for squash bug eggs"]
+    }
+  },
+  {
+    "id": "zucchini",
+    "name": "Zucchini",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "corn", "marigold", "nasturtium", "pea", "radish"],
+    "antagonists": ["potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [45, 55],
+      "start_indoors_weeks_before_last_frost": 3,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Very productive. Plant just 2-3 for a family."
+    },
+    "care": {
+      "watering": "1-2 inches per week at base of plant.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Heavy feeder. Apply compost or fertilizer every 3-4 weeks.",
+      "pruning": "Remove older outer leaves to improve air flow.",
+      "pests": "Squash vine borer, squash bugs, powdery mildew.",
+      "harvesting": "Pick at 6-8 inches for best flavor. Check daily - they grow fast!",
+      "tips": ["Harvest small for best taste", "Hand-pollinate for guaranteed fruit", "One plant can produce 6-10 lbs per week", "Edible flowers can be stuffed and fried"]
+    }
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "cucumber", "melon", "pea", "potato", "pumpkin", "squash", "sunflower"],
+    "antagonists": ["tomato", "celery"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [60, 100],
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Plant in blocks (not rows) for pollination. Needs warm soil (65°F+)."
+    },
+    "care": {
+      "watering": "1.5-2 inches per week. Critical during tasseling and ear development.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Heavy nitrogen feeder. Side-dress with nitrogen when knee-high and again at tasseling.",
+      "pruning": "Remove suckers if desired, but not necessary.",
+      "pests": "Corn earworm, raccoons, birds. Apply oil to silk tips for earworms.",
+      "harvesting": "Ready when silk is brown and kernels squirt milky juice when pressed.",
+      "tips": ["Plant in blocks of at least 4x4 for pollination", "Three Sisters: plant with beans and squash", "Sugar converts to starch after picking - eat immediately", "Successive plantings extend harvest"]
+    }
+  },
+  {
+    "id": "potato",
+    "name": "Potato",
+    "spacing_per_sqft": 1,
+    "companions": ["basil", "bean", "cabbage", "corn", "horseradish", "marigold", "pea"],
+    "antagonists": ["apple", "cherry", "cucumber", "pumpkin", "raspberry", "squash", "sunflower", "tomato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [70, 120],
+      "direct_sow_weeks_before_last_frost": 2,
+      "notes": "Plant seed potatoes 2-4 weeks before last frost. Can handle light frost."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Keep soil consistently moist, especially during tuber formation.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Low nitrogen - too much causes leafy growth. Use balanced fertilizer at planting.",
+      "pruning": "Hill soil around stems as they grow to increase yield.",
+      "pests": "Colorado potato beetle, late blight. Rotate crops and remove beetles by hand.",
+      "harvesting": "New potatoes: harvest when flowering. Storage potatoes: wait 2 weeks after tops die.",
+      "tips": ["Cut seed potatoes to pieces with 2-3 eyes each", "Hill soil 6 inches up stems twice", "Green potatoes are toxic - keep covered with soil", "Cure storage potatoes in dark for 2 weeks"]
+    }
+  },
+  {
+    "id": "cabbage",
+    "name": "Cabbage",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "beet", "celery", "chamomile", "dill", "mint", "nasturtium", "onion", "oregano", "potato", "rosemary", "sage", "thyme"],
+    "antagonists": ["grape", "strawberry", "tomato", "lettuce"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [70, 100],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_before_last_frost": 2,
+      "direct_sow": true,
+      "fall_planting_weeks_before_first_frost": 12,
+      "transplant_for_fall_weeks_before_first_frost": 12,
+      "notes": "Cool season crop. Start indoors for spring crop, direct sow for fall."
+    },
+    "care": {
+      "watering": "1-1.5 inches per week. Consistent moisture prevents cracking.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Heavy nitrogen feeder. Side-dress with nitrogen-rich fertilizer every 3 weeks.",
+      "pruning": "Remove outer damaged leaves as needed.",
+      "pests": "Cabbage worms, cabbage loopers, aphids. Use row covers and BT spray.",
+      "harvesting": "Harvest when heads are firm and solid. Cut at base, leaving wrapper leaves.",
+      "tips": ["Plant flowers nearby to attract beneficial wasps", "Fall crop is often sweeter", "Cover with row covers from day one", "Twist head slightly to slow growth if splitting threatens"]
+    }
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "beet", "celery", "chamomile", "cucumber", "dill", "mint", "nasturtium", "onion", "oregano", "potato", "rosemary", "sage"],
+    "antagonists": ["lettuce", "strawberry", "tomato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [55, 80],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_before_last_frost": 2,
+      "fall_planting_weeks_before_first_frost": 10,
+      "transplant_for_fall_weeks_before_first_frost": 10,
+      "notes": "Cool season crop. Fall planting often better - fewer pests, sweeter after frost."
+    },
+    "care": {
+      "watering": "1-1.5 inches per week. Consistent moisture is key for good heads.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Heavy feeder. Side-dress with nitrogen fertilizer when heads start forming.",
+      "pruning": "None needed. Remove yellowing leaves.",
+      "pests": "Cabbage worms, aphids, flea beetles. Use row covers and BT.",
+      "harvesting": "Cut main head when florets are tight. Side shoots continue producing.",
+      "tips": ["Harvest before flowers open (yellow shows)", "Side shoots produce for weeks after main head", "Fall broccoli sweetens after light frost", "Morning harvest keeps heads fresher"]
+    }
+  },
+  {
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "beet", "celery", "chamomile", "dill", "nasturtium", "onion", "oregano", "potato", "sage"],
+    "antagonists": ["strawberry", "tomato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [55, 100],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_before_last_frost": 2,
+      "fall_planting_weeks_before_first_frost": 12,
+      "transplant_for_fall_weeks_before_first_frost": 12,
+      "notes": "Finicky - needs consistent temps 60-70°F. Fall crop often more successful."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Very sensitive to irregular watering.",
+      "watering_frequency": "Every 2 days",
+      "sunlight": "Full sun (6 hours minimum)",
+      "fertilizing": "Heavy feeder. Fertilize every 2 weeks with balanced fertilizer.",
+      "pruning": "Blanch white varieties by tying leaves over head when 2-3 inches.",
+      "pests": "Same as cabbage - cabbage worms, aphids. Use row covers.",
+      "harvesting": "Harvest when heads are 6-8 inches and still compact.",
+      "tips": ["Most difficult brassica to grow", "Blanching keeps heads white", "Fall planting is more forgiving", "Don't let plants get stressed - they won't recover"]
+    }
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "spacing_per_sqft": 1,
+    "companions": ["beet", "celery", "cucumber", "dill", "garlic", "mint", "nasturtium", "onion", "potato", "rosemary", "sage", "spinach"],
+    "antagonists": ["strawberry", "tomato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [50, 75],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_before_last_frost": 3,
+      "direct_sow": true,
+      "direct_sow_weeks_before_last_frost": 4,
+      "fall_planting_weeks_before_first_frost": 8,
+      "transplant_for_fall_weeks_before_first_frost": 8,
+      "notes": "Very cold hardy - sweetens after frost. Can overwinter in zones 7+."
+    },
+    "care": {
+      "watering": "1-1.5 inches per week. Mulch to retain moisture.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Moderate feeder. Side-dress with compost or balanced fertilizer monthly.",
+      "pruning": "Harvest outer leaves first. Remove yellowing leaves.",
+      "pests": "Cabbage worms, aphids. Less pest pressure than other brassicas.",
+      "harvesting": "Pick outer leaves when 8-10 inches. Plants keep producing all season.",
+      "tips": ["Sweetest after frost", "Can harvest through winter with protection", "Baby kale more tender for salads", "Massage raw kale to soften for salads"]
+    }
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "spacing_per_sqft": 9,
+    "companions": ["bean", "cabbage", "celery", "onion", "pea", "strawberry"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [40, 50],
+      "direct_sow_weeks_before_last_frost": 6,
+      "succession_planting_weeks": 2,
+      "fall_planting_weeks_before_first_frost": 8,
+      "notes": "Cool season crop. Bolts quickly in heat. Plant early spring and fall."
+    },
+    "care": {
+      "watering": "1-1.5 inches per week. Consistent moisture prevents bolting.",
+      "watering_frequency": "Every 2 days",
+      "sunlight": "Partial shade (3-4 hours) in summer, full sun spring/fall",
+      "fertilizing": "Light nitrogen fertilizer every 2-3 weeks.",
+      "pruning": "Harvest outer leaves for continuous production.",
+      "pests": "Leaf miners, aphids, downy mildew. Use row covers.",
+      "harvesting": "Cut outer leaves at 4-6 inches. Or cut whole plant at base.",
+      "tips": ["Plant in shade of taller crops in summer", "Bolt-resistant varieties for late spring", "Fall spinach overwinters in many zones", "Soak seeds 24 hours for better germination"]
+    }
+  },
+  {
+    "id": "beet",
+    "name": "Beet",
+    "spacing_per_sqft": 9,
+    "companions": ["bean", "broccoli", "cabbage", "kohlrabi", "lettuce", "onion"],
+    "antagonists": ["mustard", "pole_bean"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [50, 70],
+      "direct_sow_weeks_before_last_frost": 4,
+      "succession_planting_weeks": 3,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Each 'seed' is a cluster - thin to one plant. Greens edible too."
+    },
+    "care": {
+      "watering": "1 inch per week. Even moisture prevents woody roots.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Low nitrogen. Add boron if roots have black spots inside.",
+      "pruning": "Thin seedlings to 3-4 inches apart. Eat thinnings!",
+      "pests": "Leaf miners, cercospora leaf spot. Rotate crops.",
+      "harvesting": "Harvest roots at 1-3 inches diameter. Greens anytime.",
+      "tips": ["Soak seeds overnight for faster germination", "Each seed cluster produces multiple plants - thin!", "Fall beets are sweetest", "Store in sand in cool root cellar"]
+    }
+  },
+  {
+    "id": "radish",
+    "name": "Radish",
+    "spacing_per_sqft": 16,
+    "companions": ["bean", "carrot", "cucumber", "lettuce", "melon", "nasturtium", "pea", "spinach", "squash", "tomato"],
+    "antagonists": ["hyssop"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [22, 30],
+      "direct_sow_weeks_before_last_frost": 4,
+      "succession_planting_weeks": 1,
+      "fall_planting_weeks_before_first_frost": 6,
+      "notes": "Very fast! Great for interplanting. Gets woody/hot in summer heat."
+    },
+    "care": {
+      "watering": "Keep soil consistently moist. About 1 inch per week.",
+      "watering_frequency": "Every 1-2 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "None needed for quick-growing radishes.",
+      "pruning": "Thin to 1 inch apart when seedlings appear.",
+      "pests": "Flea beetles, root maggots. Use row covers.",
+      "harvesting": "Pull when roots are 1 inch diameter. Don't leave too long.",
+      "tips": ["Plant every week for continuous harvest", "Great for marking slow-germinating seeds", "Winter radishes need 60+ days", "Over-mature radishes become pithy and hot"]
+    }
+  },
+  {
+    "id": "turnip",
+    "name": "Turnip",
+    "spacing_per_sqft": 9,
+    "companions": ["pea", "vetch"],
+    "antagonists": ["hedge_mustard", "knotweed", "potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [40, 60],
+      "direct_sow_weeks_before_last_frost": 4,
+      "succession_planting_weeks": 3,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Best as fall crop - sweetens after frost. Both roots and greens edible."
+    },
+    "care": {
+      "watering": "1 inch per week. Consistent moisture for best roots.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Low nitrogen - too much causes leafy growth, poor roots.",
+      "pruning": "Thin to 4 inches apart.",
+      "pests": "Flea beetles, root maggots, aphids.",
+      "harvesting": "Harvest roots at 2-3 inches. Greens anytime they're big enough.",
+      "tips": ["Fall turnips are sweeter than spring", "Greens are nutritious - don't discard!", "Store in root cellar or leave in ground with mulch", "Harvest before hard freeze"]
+    }
+  },
+  {
+    "id": "garlic",
+    "name": "Garlic",
+    "spacing_per_sqft": 9,
+    "companions": ["beet", "broccoli", "cabbage", "carrot", "cucumber", "eggplant", "kale", "pepper", "potato", "spinach", "tomato"],
+    "antagonists": ["asparagus", "bean", "pea", "sage", "strawberry"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [240, 270],
+      "fall_planting_weeks_before_first_frost": 6,
+      "notes": "Best planted in fall for summer harvest. Plant individual cloves. Needs cold period."
+    },
+    "care": {
+      "watering": "1 inch per week during active growth. Stop watering 2 weeks before harvest.",
+      "watering_frequency": "Every 3-4 days in spring",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed with nitrogen in early spring when growth resumes.",
+      "pruning": "Cut scapes (flower stalks) on hardneck varieties for bigger bulbs.",
+      "pests": "Few pests. Garlic repels many insects naturally.",
+      "harvesting": "Harvest when lower 3-4 leaves are brown. Cure for 2-3 weeks.",
+      "tips": ["Plant largest cloves for biggest bulbs", "Hardneck varieties better for cold climates", "Scapes are edible and delicious", "Save biggest bulbs for next year's planting"]
+    }
+  },
+  {
+    "id": "leek",
+    "name": "Leek",
+    "spacing_per_sqft": 4,
+    "companions": ["carrot", "celery", "onion"],
+    "antagonists": ["bean", "pea"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [100, 150],
+      "start_indoors_weeks_before_last_frost": 10,
+      "transplant_weeks_before_last_frost": 2,
+      "notes": "Very long season. Start very early indoors. Mound soil for white stems."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Keep consistently moist.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Heavy nitrogen feeder. Fertilize every 3 weeks.",
+      "pruning": "Trim tops to 6 inches when transplanting.",
+      "pests": "Onion thrips, leek moth. Use row covers.",
+      "harvesting": "Harvest anytime after pencil thickness. Cold hardy - leave in ground into winter.",
+      "tips": ["Hill soil around stems for longer white portion", "Plant in trench and fill as they grow", "Much milder than onions", "Can overwinter in ground with mulch"]
+    }
+  },
+  {
+    "id": "chive",
+    "name": "Chive",
+    "spacing_per_sqft": 16,
+    "companions": ["apple", "carrot", "grape", "rose", "tomato"],
+    "antagonists": ["bean", "pea"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [60, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_before_last_frost": 2,
+      "direct_sow": true,
+      "direct_sow_weeks_before_last_frost": 4,
+      "notes": "Perennial. Can divide established clumps. Flowers are edible."
+    },
+    "care": {
+      "watering": "1 inch per week. Drought tolerant once established.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Light feeder. Top-dress with compost in spring.",
+      "pruning": "Cut back to 2 inches a few times per season to encourage fresh growth.",
+      "pests": "Very few. Chives repel many pests.",
+      "harvesting": "Snip leaves 2 inches above ground. Use scissors.",
+      "tips": ["Perennial - comes back every year", "Divide clumps every 3-4 years", "Flowers attract beneficial insects", "Great for pest control around roses and fruit trees"]
+    }
+  },
+  {
+    "id": "asparagus",
+    "name": "Asparagus",
+    "spacing_per_sqft": 1,
+    "companions": ["basil", "parsley", "tomato"],
+    "antagonists": ["garlic", "onion", "potato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [730, 1095],
+      "transplant_weeks_before_last_frost": 4,
+      "notes": "Perennial - plant crowns in early spring. Don't harvest first 2 years. Produces 15-20 years."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Deep watering encourages deep roots.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (8 hours)",
+      "fertilizing": "Feed in spring before spears emerge and after harvest ends.",
+      "pruning": "Let ferns grow all summer. Cut back dead ferns in late fall or early spring.",
+      "pests": "Asparagus beetle. Hand-pick or use neem.",
+      "harvesting": "Harvest spears at 7-9 inches for 6-8 weeks. Stop when spears thin out.",
+      "tips": ["Don't harvest first 2 years - let plants establish", "Perennial bed produces 15-20+ years", "Male plants more productive", "Add compost each spring"]
+    }
+  },
+  {
+    "id": "celery",
+    "name": "Celery",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "cabbage", "leek", "onion", "spinach", "tomato"],
+    "antagonists": ["carrot", "parsnip", "potato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [85, 120],
+      "start_indoors_weeks_before_last_frost": 10,
+      "transplant_weeks_after_last_frost": 2,
+      "notes": "Long season, needs consistent moisture. Start very early - slow to germinate."
+    },
+    "care": {
+      "watering": "2+ inches per week. Never let soil dry out!",
+      "watering_frequency": "Daily - celery needs constant moisture",
+      "sunlight": "Full sun to partial shade (5-6 hours)",
+      "fertilizing": "Heavy feeder. Side-dress every 2 weeks with nitrogen.",
+      "pruning": "Blanch stalks by mounding soil or wrapping with paper.",
+      "pests": "Carrot rust fly, aphids, early blight.",
+      "harvesting": "Cut outer stalks as needed, or harvest whole plant.",
+      "tips": ["Most demanding vegetable - needs constant moisture", "Seeds need light to germinate", "Can overwinter in mild climates", "Self-blanching varieties easier"]
+    }
+  },
+  {
+    "id": "eggplant",
+    "name": "Eggplant",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "marigold", "pepper", "potato", "spinach", "thyme"],
+    "antagonists": ["fennel"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [70, 85],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_after_last_frost": 3,
+      "notes": "Needs heat - wait until soil is 70°F+. Start indoors 8-10 weeks early."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Consistent watering prevents bitter fruit.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Feed every 2-3 weeks with balanced fertilizer during fruiting.",
+      "pruning": "Stake plants and remove some suckers for larger fruit.",
+      "pests": "Flea beetles, Colorado potato beetle, aphids.",
+      "harvesting": "Harvest when skin is glossy. Dull skin = overripe and seedy.",
+      "tips": ["Needs warmth - use black plastic mulch", "Pick before skin turns dull", "Smaller fruits are less bitter", "Japanese varieties more productive in short seasons"]
+    }
+  },
+  {
+    "id": "okra",
+    "name": "Okra",
+    "spacing_per_sqft": 1,
+    "companions": ["melon", "pepper", "sweet_potato"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [50, 65],
+      "direct_sow_weeks_after_last_frost": 3,
+      "notes": "Needs hot weather. Soak seeds overnight before planting."
+    },
+    "care": {
+      "watering": "1 inch per week. Drought tolerant but produces better with consistent moisture.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Side-dress with compost monthly or use balanced fertilizer.",
+      "pruning": "Remove lower leaves as plant grows. Cut spent stalks for side shoots.",
+      "pests": "Few pests. Aphids, stinkbugs occasionally.",
+      "harvesting": "Pick pods at 2-4 inches every 2 days. Gets tough if left.",
+      "tips": ["Soaking seeds speeds germination", "Wear gloves - leaves can irritate skin", "Harvest every 2 days - pods toughen quickly", "Productive until first frost"]
+    }
+  },
+  {
+    "id": "sweet_potato",
+    "name": "Sweet Potato",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "dill", "thyme"],
+    "antagonists": ["squash"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [100, 140],
+      "transplant_weeks_after_last_frost": 3,
+      "notes": "Plant slips after soil is 65°F+. Needs long, warm growing season."
+    },
+    "care": {
+      "watering": "1 inch per week. More during root development, less in final month.",
+      "watering_frequency": "Every 3-4 days, reduce before harvest",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Low nitrogen - too much causes vines, not roots. Add potassium.",
+      "pruning": "Lift vines occasionally to prevent rooting at nodes.",
+      "pests": "Sweet potato weevil, deer, voles.",
+      "harvesting": "Harvest before frost. Cure at 85°F and high humidity for 10 days.",
+      "tips": ["Make own slips from grocery store sweet potato", "Curing is essential for sweetness and storage", "Don't refrigerate - kills flavor", "Vines are edible too"]
+    }
+  },
+  {
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "corn", "marigold", "melon", "squash", "sunflower"],
+    "antagonists": ["potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [90, 120],
+      "start_indoors_weeks_before_last_frost": 3,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Count back from desired harvest (Oct) for planting date."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Avoid wetting leaves - causes disease.",
+      "watering_frequency": "Every 2-3 days, deeply",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Heavy feeder. Side-dress with nitrogen when vines start running.",
+      "pruning": "Pinch vine tips after fruit set for earlier maturity.",
+      "pests": "Squash bugs, vine borers, powdery mildew.",
+      "harvesting": "Harvest when rind is hard and stem begins to dry. Leave 4-inch stem.",
+      "tips": ["Place cardboard under fruits to prevent rot", "Limit to 2-3 fruits per vine for larger pumpkins", "Cure in sun for 10 days before storage", "Count back 100 days from Halloween to plant"]
+    }
+  },
+  {
+    "id": "melon",
+    "name": "Melon",
+    "spacing_per_sqft": 1,
+    "companions": ["corn", "marigold", "nasturtium", "radish", "sunflower"],
+    "antagonists": ["potato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [75, 95],
+      "start_indoors_weeks_before_last_frost": 3,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Start indoors in short season areas (zones 3-5). Needs warm soil (70°F+)."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Reduce watering as fruit ripens for sweeter melons.",
+      "watering_frequency": "Every 2-3 days, reduce near harvest",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Feed every 2-3 weeks until fruit set.",
+      "pruning": "Pinch off flowers after 3-4 fruits set per vine.",
+      "pests": "Cucumber beetles, aphids, powdery mildew.",
+      "harvesting": "Cantaloupe 'slips' from vine when ripe. Honeydew stays attached.",
+      "tips": ["Use black plastic mulch to warm soil", "Support melons on trellises with slings", "Reduce watering 1 week before harvest for sweetness", "Cantaloupe ready when stem 'slips' from fruit"]
+    }
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "spacing_per_sqft": 1,
+    "companions": ["corn", "marigold", "nasturtium", "radish"],
+    "antagonists": ["potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [80, 100],
+      "start_indoors_weeks_before_last_frost": 3,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 2,
+      "notes": "Needs long warm season. Start indoors in zones 5 and colder."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Reduce as fruit ripens.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Side-dress with balanced fertilizer when vines start running.",
+      "pruning": "Can pinch growing tips after fruit set.",
+      "pests": "Same as melons - cucumber beetles, aphids.",
+      "harvesting": "Thump for hollow sound. Spot touching ground turns from white to yellow.",
+      "tips": ["Ground spot turns yellow when ripe", "Thump should sound hollow", "Tendril nearest fruit turns brown when ripe", "Need lots of space - plan 20+ sq ft per plant"]
+    }
+  },
+  {
+    "id": "parsley",
+    "name": "Parsley",
+    "spacing_per_sqft": 4,
+    "companions": ["asparagus", "corn", "pepper", "tomato"],
+    "antagonists": ["lettuce", "mint"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [70, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "direct_sow": true,
+      "direct_sow_weeks_before_last_frost": 4,
+      "notes": "Slow to germinate (2-4 weeks). Soak seeds overnight. Biennial."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Keep soil consistently moist.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Light feeder. Compost at planting is sufficient.",
+      "pruning": "Cut outer stems at base to encourage new growth.",
+      "pests": "Swallowtail caterpillars (plant extra to share!), aphids.",
+      "harvesting": "Cut outer stems at base. Plant continues producing all season.",
+      "tips": ["Soak seeds in warm water overnight for faster germination", "Biennial - produces seed second year", "Flat-leaf has more flavor", "Attracts beneficial swallowtail butterflies"]
+    }
+  },
+  {
+    "id": "cilantro",
+    "name": "Cilantro",
+    "spacing_per_sqft": 4,
+    "companions": ["bean", "pea", "spinach", "tomato"],
+    "antagonists": ["fennel"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [45, 70],
+      "direct_sow_weeks_before_last_frost": 2,
+      "succession_planting_weeks": 2,
+      "fall_planting_weeks_before_first_frost": 8,
+      "notes": "Bolts quickly in heat. Plant every 2-3 weeks for continuous harvest."
+    },
+    "care": {
+      "watering": "Keep evenly moist. About 1 inch per week.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Partial shade in summer (4 hours), full sun spring/fall",
+      "fertilizing": "Light feeder. Compost at planting is enough.",
+      "pruning": "Harvest frequently to delay bolting.",
+      "pests": "Aphids, leafhoppers. Very few pest problems.",
+      "harvesting": "Snip leaves as needed. When it bolts, harvest coriander seeds.",
+      "tips": ["Bolts very fast in heat - succession plant", "Slow-bolt varieties last longer", "Seeds (coriander) also valuable - let some bolt", "Fall planting most successful"]
+    }
+  },
+  {
+    "id": "dill",
+    "name": "Dill",
+    "spacing_per_sqft": 4,
+    "companions": ["asparagus", "cabbage", "corn", "cucumber", "lettuce", "onion"],
+    "antagonists": ["carrot", "tomato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [40, 60],
+      "direct_sow_weeks_before_last_frost": 2,
+      "succession_planting_weeks": 3,
+      "notes": "Direct sow - doesn't transplant well. Self-seeds readily."
+    },
+    "care": {
+      "watering": "1 inch per week. Drought tolerant once established.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Light feeder. No fertilizer needed.",
+      "pruning": "Harvest leaves regularly. Let some flowers set seed.",
+      "pests": "Swallowtail caterpillars (share with them!), aphids.",
+      "harvesting": "Snip leaves anytime. Harvest seed heads when brown.",
+      "tips": ["Self-seeds readily - let some flower", "Tall varieties may need staking", "Attracts beneficial insects", "Essential for pickles - plant near cucumbers"]
+    }
+  },
+  {
+    "id": "oregano",
+    "name": "Oregano",
+    "spacing_per_sqft": 1,
+    "companions": ["basil", "pepper", "tomato"],
+    "antagonists": [],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [80, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_after_last_frost": 1,
+      "notes": "Perennial. Can also propagate from cuttings."
+    },
+    "care": {
+      "watering": "Once established, only water during drought. 1/2 inch per week.",
+      "watering_frequency": "Every 5-7 days, drought tolerant",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Very light feeder. Over-fertilizing reduces flavor.",
+      "pruning": "Cut back to 1/3 after flowering. Regular harvesting shapes plant.",
+      "pests": "Very few. Occasionally aphids or spider mites.",
+      "harvesting": "Harvest before flowering for best flavor. Cut stems above leaf nodes.",
+      "tips": ["Perennial - comes back each year", "Greek oregano has best flavor", "Cut back after flowering to promote new growth", "Dries very well"]
+    }
+  },
+  {
+    "id": "thyme",
+    "name": "Thyme",
+    "spacing_per_sqft": 4,
+    "companions": ["cabbage", "eggplant", "potato", "strawberry", "tomato"],
+    "antagonists": [],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [70, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_before_last_frost": 2,
+      "notes": "Perennial. Slow from seed - easier to buy starts."
+    },
+    "care": {
+      "watering": "Drought tolerant. Water only when soil is dry. 1/2 inch weekly max.",
+      "watering_frequency": "Every 5-7 days, let soil dry between",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Very light feeder. Too much fertilizer reduces flavor.",
+      "pruning": "Trim after flowering. Cut back woody growth in spring.",
+      "pests": "Very few. Root rot if overwatered.",
+      "harvesting": "Snip sprigs as needed. Best just before flowering.",
+      "tips": ["Perennial groundcover", "Many varieties - try lemon thyme", "Perfect for rock gardens", "Don't overwater - Mediterranean plant"]
+    }
+  },
+  {
+    "id": "rosemary",
+    "name": "Rosemary",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "broccoli", "cabbage", "carrot", "sage"],
+    "antagonists": [],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "semi_hardy",
+      "days_to_maturity": [90, 180],
+      "transplant_weeks_after_last_frost": 2,
+      "notes": "Perennial zones 8+. Overwinter indoors in colder zones."
+    },
+    "care": {
+      "watering": "Very drought tolerant. Water deeply but infrequently. 1/2 inch weekly.",
+      "watering_frequency": "Every 7-10 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Very light feeder. Little to no fertilizer needed.",
+      "pruning": "Prune after flowering to shape. Don't cut into old wood.",
+      "pests": "Very few. Root rot if overwatered, powdery mildew.",
+      "harvesting": "Snip sprigs as needed. Best before flowering.",
+      "tips": ["Overwinter indoors in zones 7 and colder", "Needs excellent drainage", "Can grow into large shrub in mild climates", "Woody stems - always leave some green when pruning"]
+    }
+  },
+  {
+    "id": "sage",
+    "name": "Sage",
+    "spacing_per_sqft": 1,
+    "companions": ["broccoli", "cabbage", "carrot", "rosemary", "strawberry", "tomato"],
+    "antagonists": ["cucumber", "onion"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [75, 90],
+      "start_indoors_weeks_before_last_frost": 8,
+      "transplant_weeks_before_last_frost": 2,
+      "notes": "Perennial. Replace every 3-4 years as plants get woody."
+    },
+    "care": {
+      "watering": "Drought tolerant once established. 1/2 inch per week.",
+      "watering_frequency": "Every 5-7 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Light feeder. Too much reduces oil content and flavor.",
+      "pruning": "Cut back by 1/3 in spring to prevent woodiness.",
+      "pests": "Very few. Root rot if overwatered.",
+      "harvesting": "Harvest leaves before flowering. Don't take more than 1/3 at once.",
+      "tips": ["Replace plants every 3-4 years", "Great for culinary and medicinal use", "Attracts pollinators when flowering", "Many ornamental varieties available"]
+    }
+  },
+  {
+    "id": "mint",
+    "name": "Mint",
+    "spacing_per_sqft": 1,
+    "companions": ["broccoli", "cabbage", "pea", "tomato"],
+    "antagonists": ["parsley"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [60, 90],
+      "transplant_weeks_before_last_frost": 2,
+      "notes": "Perennial. INVASIVE - plant in containers! Spreads aggressively."
+    },
+    "care": {
+      "watering": "Keep consistently moist. 1-2 inches per week.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Partial shade to full sun (4-6 hours)",
+      "fertilizing": "Moderate feeder. Feed with balanced fertilizer monthly.",
+      "pruning": "Cut back frequently to encourage bushy growth. Remove flowers.",
+      "pests": "Very few. Can get rust disease in humid conditions.",
+      "harvesting": "Harvest before flowering for best flavor. Cut stems above leaf nodes.",
+      "tips": ["ALWAYS plant in containers - very invasive!", "Harvest regularly to keep vigorous", "Divide plants every 2-3 years", "Many varieties - try chocolate mint!"]
+    }
+  },
+  {
+    "id": "lavender",
+    "name": "Lavender",
+    "spacing_per_sqft": 1,
+    "companions": ["echinacea", "rose", "sedum"],
+    "antagonists": [],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [90, 200],
+      "start_indoors_weeks_before_last_frost": 10,
+      "transplant_weeks_after_last_frost": 2,
+      "notes": "Perennial zones 5-9. Needs excellent drainage. Buy starts."
+    },
+    "care": {
+      "watering": "Very drought tolerant. 1/2 inch per week max. Don't overwater!",
+      "watering_frequency": "Every 7-10 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Very light feeder. Too much fertilizer reduces blooms.",
+      "pruning": "Prune after flowering by 1/3. Never cut into old wood.",
+      "pests": "Very few when grown properly. Root rot from overwatering.",
+      "harvesting": "Cut when 50% of flowers are open. Dry upside down.",
+      "tips": ["Must have excellent drainage", "Add gravel to planting hole if needed", "English lavender most cold-hardy", "Don't cut into woody stems - they won't regrow"]
+    }
+  },
+  {
+    "id": "chamomile",
+    "name": "Chamomile",
+    "spacing_per_sqft": 4,
+    "companions": ["basil", "cabbage", "cucumber", "mint", "onion"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [60, 90],
+      "direct_sow_weeks_before_last_frost": 2,
+      "notes": "Self-seeds readily. German chamomile is annual, Roman is perennial."
+    },
+    "care": {
+      "watering": "1 inch per week. Tolerates some drought.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Very light feeder. Rich soil reduces flowers.",
+      "pruning": "Harvest flowers regularly to encourage more blooms.",
+      "pests": "Very few. Attracts beneficial insects.",
+      "harvesting": "Pick flowers when fully open. Dry quickly for tea.",
+      "tips": ["German chamomile: annual, best for tea", "Roman chamomile: perennial groundcover", "Self-seeds readily", "Attracts beneficial wasps and hoverflies"]
+    }
+  },
+  {
+    "id": "borage",
+    "name": "Borage",
+    "spacing_per_sqft": 1,
+    "companions": ["bean", "cabbage", "squash", "strawberry", "tomato"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [55, 75],
+      "direct_sow_weeks_before_last_frost": 2,
+      "notes": "Self-seeds readily. Attracts bees. Edible flowers."
+    },
+    "care": {
+      "watering": "1 inch per week. Drought tolerant once established.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "No fertilizer needed. Thrives in poor soil.",
+      "pruning": "None needed. Self-seeds prolifically.",
+      "pests": "Very few. Repels tomato hornworms.",
+      "harvesting": "Pick flowers for salads and cocktails. Young leaves edible.",
+      "tips": ["Excellent bee plant - great pollinator attractor", "Self-seeds extensively - may need to thin", "Blue flowers turn pink in acidic conditions", "Cucumber-flavored leaves and flowers"]
+    }
+  },
+  {
+    "id": "marigold",
+    "name": "Marigold",
+    "spacing_per_sqft": 4,
+    "companions": ["basil", "bean", "broccoli", "cabbage", "cucumber", "eggplant", "melon", "pepper", "potato", "pumpkin", "squash", "tomato"],
+    "antagonists": ["bean"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [50, 75],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_after_last_frost": 1,
+      "direct_sow": true,
+      "direct_sow_weeks_after_last_frost": 1,
+      "notes": "Deters many pests. French marigolds best for companion planting."
+    },
+    "care": {
+      "watering": "1 inch per week. Drought tolerant once established.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Light feeder. Too much fertilizer reduces blooms.",
+      "pruning": "Deadhead spent flowers to encourage more blooms.",
+      "pests": "Few pests - they deter many insects! Occasionally spider mites.",
+      "harvesting": "Cut flowers for arrangements. Save seeds from dried flowers.",
+      "tips": ["French marigolds best for pest control", "Root secretions deter nematodes", "Deadhead regularly for continuous blooms", "Excellent trap crop for aphids"]
+    }
+  },
+  {
+    "id": "nasturtium",
+    "name": "Nasturtium",
+    "spacing_per_sqft": 2,
+    "companions": ["apple", "bean", "broccoli", "cabbage", "cucumber", "kale", "melon", "pumpkin", "radish", "squash", "tomato"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [45, 65],
+      "direct_sow_weeks_after_last_frost": 1,
+      "notes": "Trap crop for aphids. All parts edible. Thrives in poor soil."
+    },
+    "care": {
+      "watering": "Moderate water. 1 inch per week. Too much causes leaf growth.",
+      "watering_frequency": "Every 3-4 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Do NOT fertilize. Poor soil produces more flowers.",
+      "pruning": "None needed. Can trim to shape.",
+      "pests": "Attracts aphids (that's the point - trap crop!).",
+      "harvesting": "Pick leaves, flowers, and seed pods. All edible.",
+      "tips": ["Excellent trap crop - draws aphids away from vegetables", "All parts edible with peppery flavor", "Don't fertilize - poor soil means more flowers", "Trailing varieties great for hanging baskets"]
+    }
+  },
+  {
+    "id": "sunflower",
+    "name": "Sunflower",
+    "spacing_per_sqft": 1,
+    "companions": ["corn", "cucumber", "melon", "squash"],
+    "antagonists": ["bean", "potato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "tender",
+      "days_to_maturity": [70, 100],
+      "direct_sow_weeks_after_last_frost": 1,
+      "succession_planting_weeks": 2,
+      "notes": "Direct sow after frost. Great for pollinators."
+    },
+    "care": {
+      "watering": "1-2 inches per week during seed development.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Light feeder. Side-dress with balanced fertilizer when flowering.",
+      "pruning": "For large single flowers, remove side shoots.",
+      "pests": "Birds love seeds! Use netting if saving seeds.",
+      "harvesting": "Cut when petals fall and back of head is brown. Hang upside down to dry.",
+      "tips": ["Plant tall varieties on north side of garden", "Stake tall varieties in windy areas", "Succession plant for flowers all summer", "Save seeds for birds or next year"]
+    }
+  },
+  {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "spacing_per_sqft": 4,
+    "companions": ["bean", "borage", "lettuce", "onion", "sage", "spinach", "thyme"],
+    "antagonists": ["broccoli", "cabbage", "fennel"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [365, 730],
+      "transplant_weeks_before_last_frost": 4,
+      "notes": "Perennial. Plant in early spring. Remove flowers first year."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Critical during fruit development.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Feed in spring and after harvest. Use balanced fertilizer.",
+      "pruning": "Remove runners for larger berries. Let some root for new plants.",
+      "pests": "Slugs, birds, and strawberry borer. Use straw mulch and netting.",
+      "harvesting": "Pick when fully red. Harvest every 2-3 days.",
+      "tips": ["Mulch with straw to keep berries clean", "Remove runners for bigger berries", "Renovate beds every 3-4 years", "June-bearing: one big harvest. Everbearing: continuous"]
+    }
+  },
+  {
+    "id": "grape",
+    "name": "Grape",
+    "spacing_per_sqft": 1,
+    "companions": ["blackberry", "clover", "geranium", "hyssop", "rose"],
+    "antagonists": ["cabbage", "radish"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [730, 1095],
+      "transplant_weeks_before_last_frost": 4,
+      "notes": "Plant dormant bare-root vines in early spring. Takes 2-3 years."
+    },
+    "care": {
+      "watering": "Deep watering once per week. 1-2 inches. Established vines are drought tolerant.",
+      "watering_frequency": "Once per week, deep watering",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Feed in spring with balanced fertilizer. Don't over-fertilize.",
+      "pruning": "Essential! Prune 90% of previous year's growth in late winter.",
+      "pests": "Japanese beetles, grape berry moth, birds. Netting helps.",
+      "harvesting": "Taste test for ripeness. Grapes don't ripen after picking.",
+      "tips": ["Pruning is critical - learn proper techniques", "Support with strong trellis system", "Takes 2-3 years for first real harvest", "Different varieties for eating, juice, wine"]
+    }
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "spacing_per_sqft": 1,
+    "companions": ["chive", "garlic", "nasturtium", "wallflower"],
+    "antagonists": ["grass", "potato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [730, 1825],
+      "transplant_weeks_before_last_frost": 6,
+      "notes": "Plant bare-root trees while dormant. Need 2 trees for pollination."
+    },
+    "care": {
+      "watering": "Deep water weekly for young trees. Established trees need less.",
+      "watering_frequency": "Weekly for young trees",
+      "sunlight": "Full sun (8+ hours)",
+      "fertilizing": "Feed in early spring. Don't over-fertilize - causes weak growth.",
+      "pruning": "Annual pruning essential. Thin fruit for larger apples.",
+      "pests": "Apple maggot, codling moth, aphids, fire blight. Many issues!",
+      "harvesting": "Apples ready when they twist off easily. Taste test!",
+      "tips": ["Need 2 varieties for pollination", "Thin fruit to 6 inches apart for larger apples", "Annual pruning critical for production", "Choose disease-resistant varieties"]
+    }
+  },
+  {
+    "id": "blueberry",
+    "name": "Blueberry",
+    "spacing_per_sqft": 1,
+    "companions": ["azalea", "rhododendron", "strawberry"],
+    "antagonists": [],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [730, 1095],
+      "transplant_weeks_before_last_frost": 4,
+      "notes": "Plant in early spring. Needs acidic soil (pH 4.5-5.5)."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Keep consistently moist but not waterlogged.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Use acidifying fertilizer for acid-loving plants. Feed in spring.",
+      "pruning": "Remove oldest canes after 6-8 years. Thin crossing branches.",
+      "pests": "Birds! Use netting. Mummy berry disease.",
+      "harvesting": "Wait until berries easily detach. Fully ripe berries are sweeter.",
+      "tips": ["MUST have acidic soil - amend with sulfur if needed", "Use peat moss and pine needle mulch", "Need 2 varieties for best pollination", "Protect from birds with netting"]
+    }
+  },
+  {
+    "id": "kohlrabi",
+    "name": "Kohlrabi",
+    "spacing_per_sqft": 4,
+    "companions": ["beet", "celery", "cucumber", "lettuce", "onion", "potato"],
+    "antagonists": ["pole_bean", "strawberry", "tomato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [45, 60],
+      "start_indoors_weeks_before_last_frost": 4,
+      "transplant_weeks_before_last_frost": 2,
+      "direct_sow": true,
+      "direct_sow_weeks_before_last_frost": 4,
+      "fall_planting_weeks_before_first_frost": 8,
+      "transplant_for_fall_weeks_before_first_frost": 8,
+      "notes": "Cool season crop. Harvest when 2-3 inches diameter."
+    },
+    "care": {
+      "watering": "1 inch per week. Consistent moisture prevents woody bulbs.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Moderate feeder. Side-dress with nitrogen if growth slows.",
+      "pruning": "None needed. Remove yellowing leaves.",
+      "pests": "Same as cabbage - cabbage worms, aphids, flea beetles.",
+      "harvesting": "Harvest when bulb is 2-3 inches. Gets woody if larger.",
+      "tips": ["Harvest young for tender texture", "Both bulb and leaves edible", "Purple varieties more cold-hardy", "Tastes like mild, sweet broccoli stems"]
+    }
+  },
+  {
+    "id": "brussels_sprout",
+    "name": "Brussels Sprout",
+    "spacing_per_sqft": 1,
+    "companions": ["beet", "carrot", "chamomile", "dill", "mint", "nasturtium", "onion", "oregano", "rosemary", "sage"],
+    "antagonists": ["strawberry", "tomato"],
+    "planting": {
+      "type": "transplant",
+      "frost_tolerance": "very_hardy",
+      "days_to_maturity": [90, 120],
+      "start_indoors_weeks_before_last_frost": 6,
+      "transplant_weeks_before_last_frost": 2,
+      "notes": "Best as fall crop - flavor improves after frost. Very long season."
+    },
+    "care": {
+      "watering": "1-1.5 inches per week. Consistent moisture important.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Heavy nitrogen feeder. Side-dress monthly.",
+      "pruning": "Remove lower leaves as sprouts form. Top plant 3 weeks before harvest.",
+      "pests": "Cabbage worms, aphids, clubroot. Use row covers.",
+      "harvesting": "Pick from bottom up when sprouts are 1-2 inches. Sweetens after frost.",
+      "tips": ["Best flavor after frost", "Remove yellowing leaves", "Top plant 3 weeks before harvest to speed development", "Can harvest through winter with protection"]
+    }
+  },
+  {
+    "id": "swiss_chard",
+    "name": "Swiss Chard",
+    "spacing_per_sqft": 4,
+    "companions": ["bean", "cabbage", "onion"],
+    "antagonists": [],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [50, 60],
+      "direct_sow_weeks_before_last_frost": 2,
+      "succession_planting_weeks": 3,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Cut-and-come-again crop. More heat tolerant than spinach."
+    },
+    "care": {
+      "watering": "1 inch per week. Consistent moisture produces tender leaves.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun to partial shade (4-6 hours)",
+      "fertilizing": "Side-dress with nitrogen every 3-4 weeks.",
+      "pruning": "Harvest outer leaves to encourage new growth.",
+      "pests": "Leaf miners, slugs. Remove affected leaves.",
+      "harvesting": "Cut outer leaves at base when 8-12 inches. Plant keeps producing.",
+      "tips": ["More heat-tolerant than spinach", "Cut-and-come-again - keeps producing all season", "Rainbow chard is beautiful and edible", "Stalks and leaves both usable"]
+    }
+  },
+  {
+    "id": "arugula",
+    "name": "Arugula",
+    "spacing_per_sqft": 16,
+    "companions": ["bean", "beet", "carrot", "celery", "cucumber", "lettuce", "onion", "spinach"],
+    "antagonists": ["strawberry"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [40, 50],
+      "direct_sow_weeks_before_last_frost": 4,
+      "succession_planting_weeks": 2,
+      "fall_planting_weeks_before_first_frost": 6,
+      "notes": "Very fast growing. Bolts in heat. Plant every 2 weeks."
+    },
+    "care": {
+      "watering": "Keep consistently moist. About 1 inch per week.",
+      "watering_frequency": "Every 2 days",
+      "sunlight": "Partial shade in summer (3-4 hours), full sun spring/fall",
+      "fertilizing": "Light feeder. Compost at planting is enough.",
+      "pruning": "Harvest frequently to delay bolting.",
+      "pests": "Flea beetles, aphids. Use row covers.",
+      "harvesting": "Cut leaves at 2-3 inches for baby greens, 6 inches for full size.",
+      "tips": ["Baby leaves are milder", "Bolts quickly in heat - grow in spring/fall", "Flowers are edible", "Self-seeds readily"]
+    }
+  },
+  {
+    "id": "fennel",
+    "name": "Fennel",
+    "spacing_per_sqft": 1,
+    "companions": [],
+    "antagonists": ["bean", "caraway", "dill", "kohlrabi", "pepper", "tomato"],
+    "planting": {
+      "type": "direct_sow",
+      "frost_tolerance": "hardy",
+      "days_to_maturity": [60, 90],
+      "direct_sow_weeks_after_last_frost": 2,
+      "fall_planting_weeks_before_first_frost": 10,
+      "notes": "Best as fall crop - bolts in heat. Plant away from most vegetables."
+    },
+    "care": {
+      "watering": "1-2 inches per week. Consistent moisture for good bulb development.",
+      "watering_frequency": "Every 2-3 days",
+      "sunlight": "Full sun (6-8 hours)",
+      "fertilizing": "Moderate feeder. Side-dress with compost monthly.",
+      "pruning": "Hill soil around bulb for blanching.",
+      "pests": "Few pests. Aphids occasionally. Attracts swallowtail butterflies.",
+      "harvesting": "Harvest when bulb is 3 inches. Cut at soil level.",
+      "tips": ["Plant away from most vegetables - inhibits their growth", "Fall planting best - less bolting", "All parts edible - bulb, fronds, seeds", "Attracts beneficial insects"]
+    }
+  }
+]

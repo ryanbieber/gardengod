@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden God - Square Foot Garden Planner</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3009 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 10px; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { text-align: center; margin-bottom: 20px; opacity: 0.9; }
+        
+        /* Controls */
+        .controls {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .control-group { display: flex; flex-direction: column; gap: 4px; }
+        .control-group label { font-size: 0.8rem; opacity: 0.8; }
+        input[type="number"] { width: 70px; padding: 8px 10px; border: none; border-radius: 6px; font-size: 1rem; }
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        button.active { outline: 3px solid #fff; outline-offset: 2px; }
+        .btn-primary { background: #4CAF50; color: white; }
+        .btn-secondary { background: #ff9800; color: white; }
+        .btn-danger { background: #f44336; color: white; }
+        .btn-info { background: #2196F3; color: white; }
+        .btn-dark { background: #333; color: white; }
+        
+        /* Mode indicator */
+        .mode-indicator {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+        .mode-indicator.draw-mode { background: #2196F3; }
+        .mode-indicator.erase-mode { background: #f44336; }
+        .mode-indicator.plant-mode { background: #4CAF50; }
+        
+        /* Main layout */
+        .main-content { display: flex; gap: 20px; flex-wrap: wrap; }
+        .garden-area { flex: 1; min-width: 500px; }
+        .sidebar { width: 320px; display: flex; flex-direction: column; gap: 15px; }
+        
+        /* Garden beds tabs */
+        .beds-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .bed-tab {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 8px 8px 0 0;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .bed-tab.active { background: #5d4037; }
+        .bed-tab:hover { background: rgba(255,255,255,0.2); }
+        .add-bed-btn {
+            padding: 8px 12px;
+            background: transparent;
+            border: 2px dashed rgba(255,255,255,0.4);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        /* Canvas garden */
+        .garden-canvas-container {
+            background: #3e2723;
+            border-radius: 12px;
+            padding: 15px;
+            position: relative;
+        }
+        .garden-canvas {
+            display: grid;
+            gap: 2px;
+            background: #5d4037;
+            padding: 10px;
+            border-radius: 8px;
+            user-select: none;
+        }
+        .grid-cell {
+            aspect-ratio: 1;
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        .grid-cell.inactive { background: #3e2723; opacity: 0.3; }
+        .grid-cell.active { background: #8B4513; }
+        .grid-cell.active:hover { transform: scale(1.08); z-index: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+        .grid-cell.drawing { background: #6d4c41 !important; }
+        .grid-cell.companion-highlight { box-shadow: 0 0 0 3px #4CAF50; }
+        .grid-cell.antagonist-highlight { box-shadow: 0 0 0 3px #f44336; }
+        
+        /* Sidebar panels */
+        .panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        .panel h3 { margin-bottom: 12px; font-size: 1rem; }
+        
+        /* Search box */
+        .search-container { position: relative; margin-bottom: 10px; }
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        .search-input::placeholder { color: #888; }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            opacity: 0.5;
+        }
+        
+        /* Autocomplete dropdown */
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+        .autocomplete-dropdown.show { display: block; }
+        .autocomplete-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+        .autocomplete-item:hover, .autocomplete-item.highlighted { background: #e8f5e9; }
+        .autocomplete-item:last-child { border-bottom: none; }
+        .autocomplete-item .emoji { font-size: 1.3rem; }
+        .autocomplete-item .name { font-weight: 500; }
+        .autocomplete-item .spacing { font-size: 0.8rem; color: #666; margin-left: auto; }
+        
+        /* Selected plant display */
+        .selected-plant {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .selected-plant.empty {
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed rgba(255,255,255,0.3);
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+        }
+        .selected-plant .emoji { font-size: 2rem; }
+        .selected-plant .info h4 { margin-bottom: 2px; }
+        .selected-plant .info small { opacity: 0.7; }
+        .selected-plant .clear-btn {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            padding: 5px;
+        }
+        .selected-plant .clear-btn:hover { opacity: 1; }
+        
+        /* Companion info */
+        .companion-info { font-size: 0.85rem; margin-top: 10px; }
+        .companion-info h5 { margin-bottom: 5px; opacity: 0.8; }
+        .companion-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+        .companion-tag {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+        .companion-tag.good { background: rgba(76, 175, 80, 0.3); }
+        .companion-tag.bad { background: rgba(244, 67, 54, 0.3); }
+        
+        /* Score display */
+        .score-display { text-align: center; padding: 15px; }
+        .score-value { font-size: 2.5rem; font-weight: bold; color: #4CAF50; }
+        .score-label { font-size: 0.85rem; opacity: 0.8; }
+        
+        /* Queue */
+        .queue-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; min-height: 30px; }
+        .queue-item {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .queue-item .remove { cursor: pointer; opacity: 0.7; }
+        .queue-item .remove:hover { opacity: 1; }
+        
+        /* Legend */
+        .legend { display: flex; gap: 15px; font-size: 0.8rem; margin-top: 10px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        
+        /* Instructions */
+        .instructions {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        .instructions kbd {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .instructions .step { opacity: 0.5; margin: 4px 0; padding: 4px 8px; border-radius: 4px; }
+        .instructions .step.active { opacity: 1; background: rgba(76,175,80,0.3); font-weight: 500; }
+        .instructions .step.done { opacity: 0.6; text-decoration: line-through; }
+        
+        /* First time overlay */
+        .welcome-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .welcome-box {
+            background: linear-gradient(135deg, #2d5016, #1a3009);
+            border-radius: 16px;
+            padding: 30px 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .welcome-box h2 { font-size: 2rem; margin-bottom: 15px; }
+        .welcome-box p { margin-bottom: 20px; opacity: 0.9; line-height: 1.6; }
+        .welcome-box .steps { text-align: left; margin: 20px 0; }
+        .welcome-box .steps div { padding: 8px 0; font-size: 1.1rem; }
+        .welcome-box button { font-size: 1.1rem; padding: 12px 30px; }
+        
+        /* Planting Schedule Styles */
+        .schedule-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .zone-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .zone-selector select {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        .frost-dates {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .frost-date { display: flex; align-items: center; gap: 5px; }
+        .schedule-timeline {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .schedule-month {
+            margin-bottom: 15px;
+        }
+        .schedule-month h4 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            position: sticky;
+            top: 0;
+            background: rgba(45, 80, 22, 0.95);
+            padding: 8px 0;
+        }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            margin: 4px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .schedule-item:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .schedule-item .date {
+            min-width: 50px;
+            font-weight: 500;
+        }
+        .schedule-item .action {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            min-width: 80px;
+            text-align: center;
+        }
+        .schedule-item .action.start_indoors { background: #9c27b0; }
+        .schedule-item .action.direct_sow { background: #4CAF50; }
+        .schedule-item .action.transplant { background: #2196F3; }
+        .schedule-item .action.fall_direct_sow { background: #ff9800; }
+        .schedule-item .action.fall_transplant { background: #ff5722; }
+        .schedule-item .plant-name { flex: 1; }
+        .schedule-item .emoji { font-size: 1.2rem; }
+        
+        .schedule-legend {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+        }
+        .schedule-legend span {
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        
+        /* Tab navigation */
+        .main-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .main-tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 8px 8px 0 0;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .main-tab.active {
+            background: rgba(255,255,255,0.2);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Welcome overlay for first-time users -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-box">
+            <h2>🌱 Welcome to Garden God!</h2>
+            <p>Plan your square foot garden with companion planting optimization.</p>
+            <div class="steps">
+                <div>✏️ <strong>Step 1:</strong> Draw your garden bed shape</div>
+                <div>🔍 <strong>Step 2:</strong> Search and select plants</div>
+                <div>🌱 <strong>Step 3:</strong> Click cells to place plants</div>
+            </div>
+            <button class="btn-primary" onclick="dismissWelcome()">Let's Start! →</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>🌱 Garden God</h1>
+        <p class="subtitle">Square Foot Garden Planner with Companion Planting Optimization</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Canvas Width</label>
+                <input type="number" id="canvas-width" value="10" min="4" max="20">
+            </div>
+            <div class="control-group">
+                <label>Canvas Height</label>
+                <input type="number" id="canvas-height" value="8" min="4" max="20">
+            </div>
+            <button class="btn-info" onclick="resizeCanvas()">Resize Canvas</button>
+            <div style="border-left: 1px solid rgba(255,255,255,0.3); height: 30px; margin: 0 5px;"></div>
+            <button class="btn-dark" id="draw-btn" onclick="setMode('draw')">✏️ Draw Bed</button>
+            <button class="btn-danger" id="erase-btn" onclick="setMode('erase')">🧹 Erase</button>
+            <button class="btn-primary" id="plant-btn" onclick="setMode('plant')">🌱 Plant</button>
+            <div style="border-left: 1px solid rgba(255,255,255,0.3); height: 30px; margin: 0 5px;"></div>
+            <button class="btn-danger" onclick="clearPlants()">Clear Plants</button>
+            <div class="mode-indicator" id="mode-indicator">Mode: Plant</div>
+        </div>
+
+        <div class="main-content">
+            <div class="garden-area">
+                <div class="beds-tabs" id="beds-tabs">
+                    <button class="bed-tab active" data-bed="0">🌿 Bed 1</button>
+                    <button class="add-bed-btn" onclick="addBed()">+ Add Bed</button>
+                </div>
+                <div class="garden-canvas-container">
+                    <div class="garden-canvas" id="garden-canvas"></div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-color" style="background: #8B4513;"></div> Garden bed</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #3e2723;"></div> Empty space</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #4CAF50;"></div> Companion</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #f44336;"></div> Antagonist</div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="main-tabs">
+                    <button class="main-tab active" onclick="switchTab('planner')">🌱 Planner</button>
+                    <button class="main-tab" onclick="switchTab('schedule')">📅 Schedule</button>
+                </div>
+                
+                <!-- Planner Tab -->
+                <div id="planner-tab" class="tab-content active">
+                    <div class="panel">
+                        <div class="score-display">
+                            <div class="score-value" id="score">0</div>
+                            <div class="score-label">Garden Score (higher = better)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel">
+                        <h3>🔍 Search Plants</h3>
+                        <div class="search-container">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" id="plant-search" 
+                                   placeholder="Type to search plants..." 
+                                   autocomplete="off">
+                            <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+                        </div>
+                        
+                        <div class="selected-plant empty" id="selected-plant">
+                            <span>No plant selected</span>
+                        </div>
+                        
+                        <div class="companion-info" id="companion-info" style="display: none;">
+                            <h5>👍 Good companions:</h5>
+                            <div class="companion-tags" id="good-companions"></div>
+                            <h5>👎 Avoid planting near:</h5>
+                            <div class="companion-tags" id="bad-companions"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="panel">
+                        <h3>🪄 Auto-Fill Garden</h3>
+                        <small style="opacity: 0.7;">Fills all empty cells with optimized companion placement</small>
+                        <div class="queue-list" id="queue-list"></div>
+                        <button class="btn-secondary" style="width: 100%; margin-top: 10px;" onclick="optimizeGarden()">
+                            🪄 Fill Empty Cells
+                        </button>
+                        <small style="opacity: 0.5; display: block; margin-top: 8px; text-align: center;">
+                            Uses selected plant, or add multiple with <kbd>Enter</kbd>
+                        </small>
+                    </div>
+                    
+                    <div class="panel instructions" id="instructions">
+                        <strong>🚀 Quick Start:</strong><br>
+                        <div class="step active" data-step="1">① Click <kbd>Draw Bed</kbd> above, then draw on the grid →</div>
+                        <div class="step" data-step="2">② Type a plant name in search box above ↑</div>
+                        <div class="step" data-step="3">③ Click on your garden cells to plant!</div>
+                    </div>
+                </div>
+                
+                <!-- Schedule Tab -->
+                <div id="schedule-tab" class="tab-content">
+                    <div class="schedule-container">
+                        <h3>📅 Planting Schedule</h3>
+                        <div class="zone-selector">
+                            <label for="zone-select">🌡️ Your Zone:</label>
+                            <select id="zone-select" onchange="updateSchedule()">
+                                <option value="3">Zone 3</option>
+                                <option value="4">Zone 4</option>
+                                <option value="5">Zone 5</option>
+                                <option value="6">Zone 6</option>
+                                <option value="7" selected>Zone 7</option>
+                                <option value="8">Zone 8</option>
+                                <option value="9">Zone 9</option>
+                                <option value="10">Zone 10</option>
+                            </select>
+                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="toggleZoneMap()">🗺️ Zone Map</button>
+                        </div>
+                        
+                        <!-- USDA Zone Map -->
+                        <div id="zone-map-container" style="display: none; margin-bottom: 15px;">
+                            <img src="https://planthardiness.ars.usda.gov/images/USDA_Plant_Hardiness_Zone_Map_2023.png" 
+                                 alt="USDA Plant Hardiness Zone Map" 
+                                 style="width: 100%; border-radius: 8px; cursor: pointer;"
+                                 onclick="window.open('https://planthardiness.ars.usda.gov/', '_blank')"
+                                 title="Click to open full zone map">
+                            <p style="font-size: 0.75rem; opacity: 0.7; text-align: center; margin-top: 5px;">
+                                Click map to find your exact zone at planthardiness.ars.usda.gov
+                            </p>
+                        </div>
+                        
+                        <div class="frost-dates" id="frost-dates">
+                            <div class="frost-date">❄️ Last Frost: <strong id="last-frost">Apr 15</strong></div>
+                            <div class="frost-date">🍂 First Frost: <strong id="first-frost">Oct 15</strong></div>
+                        </div>
+                        
+                        <div class="schedule-legend">
+                            <span style="background: #9c27b0;">Start Indoors</span>
+                            <span style="background: #2196F3;">Transplant</span>
+                            <span style="background: #4CAF50;">Direct Sow</span>
+                            <span style="background: #ff9800;">Fall Sow</span>
+                        </div>
+                        
+                        <div id="schedule-empty" style="text-align: center; opacity: 0.7; padding: 20px;">
+                            <p>Add plants to your garden to see when to plant them!</p>
+                        </div>
+                        
+                        <div class="schedule-timeline" id="schedule-timeline"></div>
+                        
+                        <!-- Export Button -->
+                        <button id="export-btn" class="btn-secondary" style="width: 100%; margin-top: 15px; display: none;" onclick="exportGardenPlan()">
+                            📥 Export Garden Plan (Image + Schedule + Care Tips)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PLANT_EMOJIS = {
+            tomato: '🍅', basil: '🌿', carrot: '🥕', onion: '🧅', lettuce: '🥬',
+            pepper: '🌶️', bean: '🫘', pole_bean: '🫘', pea: '🫛', cucumber: '🥒',
+            squash: '🎃', zucchini: '🥒', corn: '🌽', potato: '🥔', cabbage: '🥬',
+            broccoli: '🥦', cauliflower: '🥦', kale: '🥬', spinach: '🥬', beet: '🫒',
+            radish: '🫛', turnip: '🫛', garlic: '🧄', leek: '🧅', chive: '🌿',
+            asparagus: '🌿', celery: '🥬', eggplant: '🍆', okra: '🌿', sweet_potato: '🍠',
+            pumpkin: '🎃', melon: '🍈', watermelon: '🍉', parsley: '🌿', cilantro: '🌿',
+            dill: '🌿', oregano: '🌿', thyme: '🌿', rosemary: '🌿', sage: '🌿',
+            mint: '🌿', lavender: '💜', chamomile: '🌼', borage: '💙', marigold: '🌻',
+            nasturtium: '🌺', sunflower: '🌻', strawberry: '🍓', grape: '🍇',
+            apple: '🍎', blueberry: '🫐', kohlrabi: '🥬', brussels_sprout: '🥬',
+            swiss_chard: '🥬', arugula: '🥬', fennel: '🌿'
+        };
+
+        let plants = [];
+        let beds = [{ id: 0, name: 'Bed 1', cells: new Set() }];
+        let currentBedIndex = 0;
+        let canvasWidth = 10;
+        let canvasHeight = 8;
+        let grid = []; // { active: bool, plant_id: string|null, bed_id: number|null }
+        let selectedPlant = null;
+        let plantingQueue = [];
+        let currentMode = 'plant'; // 'draw', 'erase', 'plant'
+        let isMouseDown = false;
+        let highlightedAutocomplete = -1;
+        let tutorialStep = 1;
+
+        function dismissWelcome() {
+            document.getElementById('welcome-overlay').style.display = 'none';
+            setMode('draw'); // Start them in draw mode
+        }
+
+        function updateTutorialStep(step) {
+            if (step <= tutorialStep) return;
+            tutorialStep = step;
+            document.querySelectorAll('.instructions .step').forEach(el => {
+                const s = parseInt(el.dataset.step);
+                el.classList.remove('active', 'done');
+                if (s < step) el.classList.add('done');
+                else if (s === step) el.classList.add('active');
+            });
+        }
+
+        async function init() {
+            await loadPlants();
+            initGrid();
+            createDefaultBed(); // Start with a small example bed
+            renderCanvas();
+            setupEventListeners();
+        }
+
+        async function loadPlants() {
+            try {
+                const response = await fetch('/plants');
+                plants = await response.json();
+            } catch (e) {
+                console.error('Failed to load plants:', e);
+            }
+        }
+
+        function initGrid() {
+            grid = [];
+            for (let y = 0; y < canvasHeight; y++) {
+                for (let x = 0; x < canvasWidth; x++) {
+                    grid.push({ x, y, active: false, plant_id: null, bed_id: null });
+                }
+            }
+        }
+
+        function createDefaultBed() {
+            // Create a 4x4 starter bed in the top-left area
+            for (let y = 1; y < 5; y++) {
+                for (let x = 1; x < 5; x++) {
+                    const idx = y * canvasWidth + x;
+                    grid[idx].active = true;
+                    grid[idx].bed_id = 0;
+                    beds[0].cells.add(idx);
+                }
+            }
+        }
+
+        function resizeCanvas() {
+            canvasWidth = parseInt(document.getElementById('canvas-width').value);
+            canvasHeight = parseInt(document.getElementById('canvas-height').value);
+            initGrid();
+            renderCanvas();
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('#draw-btn, #erase-btn, #plant-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`${mode}-btn`).classList.add('active');
+            
+            const indicator = document.getElementById('mode-indicator');
+            indicator.className = 'mode-indicator ' + mode + '-mode';
+            indicator.textContent = 'Mode: ' + mode.charAt(0).toUpperCase() + mode.slice(1);
+        }
+
+        function renderCanvas() {
+            const container = document.getElementById('garden-canvas');
+            container.style.gridTemplateColumns = `repeat(${canvasWidth}, 50px)`;
+            
+            container.innerHTML = grid.map((cell, idx) => {
+                const emoji = cell.plant_id ? (PLANT_EMOJIS[cell.plant_id] || '🌱') : '';
+                const activeClass = cell.active ? 'active' : 'inactive';
+                return `<div class="grid-cell ${activeClass}" data-idx="${idx}">${emoji}</div>`;
+            }).join('');
+            
+            updateScore();
+        }
+
+        function setupEventListeners() {
+            const canvas = document.getElementById('garden-canvas');
+            const searchInput = document.getElementById('plant-search');
+            const dropdown = document.getElementById('autocomplete-dropdown');
+            
+            // Canvas mouse events
+            canvas.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('grid-cell')) {
+                    isMouseDown = true;
+                    handleCellInteraction(e.target);
+                }
+            });
+            
+            canvas.addEventListener('mousemove', (e) => {
+                if (isMouseDown && e.target.classList.contains('grid-cell')) {
+                    handleCellInteraction(e.target);
+                }
+            });
+            
+            canvas.addEventListener('mouseenter', (e) => {
+                if (e.target.classList.contains('grid-cell')) {
+                    highlightCompanions(parseInt(e.target.dataset.idx));
+                }
+            }, true);
+            
+            canvas.addEventListener('mouseleave', (e) => {
+                if (e.target.classList.contains('grid-cell')) {
+                    clearHighlights();
+                }
+            }, true);
+            
+            document.addEventListener('mouseup', () => { isMouseDown = false; });
+            
+            // Search input events
+            searchInput.addEventListener('input', handleSearchInput);
+            searchInput.addEventListener('focus', handleSearchInput);
+            searchInput.addEventListener('blur', () => {
+                setTimeout(() => dropdown.classList.remove('show'), 200);
+            });
+            searchInput.addEventListener('keydown', handleSearchKeydown);
+        }
+
+        function handleCellInteraction(cellEl) {
+            const idx = parseInt(cellEl.dataset.idx);
+            const cell = grid[idx];
+            
+            if (currentMode === 'draw') {
+                cell.active = true;
+                cell.bed_id = currentBedIndex;
+                beds[currentBedIndex].cells.add(idx);
+                updateTutorialStep(2); // Drew something, move to step 2
+            } else if (currentMode === 'erase') {
+                if (cell.bed_id !== null) {
+                    beds[cell.bed_id].cells.delete(idx);
+                }
+                cell.active = false;
+                cell.plant_id = null;
+                cell.bed_id = null;
+            } else if (currentMode === 'plant' && cell.active && selectedPlant) {
+                cell.plant_id = cell.plant_id === selectedPlant.id ? null : selectedPlant.id;
+            }
+            
+            renderCanvas();
+        }
+
+        function handleSearchInput(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const dropdown = document.getElementById('autocomplete-dropdown');
+            
+            if (query.length === 0) {
+                dropdown.classList.remove('show');
+                return;
+            }
+            
+            const matches = plants.filter(p => 
+                p.name.toLowerCase().includes(query) || p.id.toLowerCase().includes(query)
+            ).slice(0, 10);
+            
+            if (matches.length === 0) {
+                dropdown.classList.remove('show');
+                return;
+            }
+            
+            highlightedAutocomplete = 0;
+            dropdown.innerHTML = matches.map((plant, i) => `
+                <div class="autocomplete-item ${i === 0 ? 'highlighted' : ''}" data-id="${plant.id}">
+                    <span class="emoji">${PLANT_EMOJIS[plant.id] || '🌱'}</span>
+                    <span class="name">${plant.name}</span>
+                    <span class="spacing">${plant.spacing_per_sqft}/sqft</span>
+                </div>
+            `).join('');
+            
+            dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+                item.addEventListener('click', () => selectPlantById(item.dataset.id));
+            });
+            
+            dropdown.classList.add('show');
+        }
+
+        function handleSearchKeydown(e) {
+            const dropdown = document.getElementById('autocomplete-dropdown');
+            const items = dropdown.querySelectorAll('.autocomplete-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                highlightedAutocomplete = Math.min(highlightedAutocomplete + 1, items.length - 1);
+                updateAutocompleteHighlight(items);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                highlightedAutocomplete = Math.max(highlightedAutocomplete - 1, 0);
+                updateAutocompleteHighlight(items);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (dropdown.classList.contains('show') && items[highlightedAutocomplete]) {
+                    selectPlantById(items[highlightedAutocomplete].dataset.id);
+                } else if (selectedPlant) {
+                    addToQueue(selectedPlant.id);
+                }
+            } else if (e.key === 'Escape') {
+                dropdown.classList.remove('show');
+            }
+        }
+
+        function updateAutocompleteHighlight(items) {
+            items.forEach((item, i) => {
+                item.classList.toggle('highlighted', i === highlightedAutocomplete);
+            });
+        }
+
+        function selectPlantById(plantId) {
+            selectedPlant = plants.find(p => p.id === plantId);
+            document.getElementById('plant-search').value = '';
+            document.getElementById('autocomplete-dropdown').classList.remove('show');
+            setMode('plant');
+            renderSelectedPlant();
+            updateTutorialStep(3); // Selected a plant, move to step 3
+        }
+
+        function renderSelectedPlant() {
+            const container = document.getElementById('selected-plant');
+            const infoContainer = document.getElementById('companion-info');
+            
+            if (!selectedPlant) {
+                container.className = 'selected-plant empty';
+                container.innerHTML = '<span>No plant selected</span>';
+                infoContainer.style.display = 'none';
+                return;
+            }
+            
+            container.className = 'selected-plant';
+            container.innerHTML = `
+                <span class="emoji">${PLANT_EMOJIS[selectedPlant.id] || '🌱'}</span>
+                <div class="info">
+                    <h4>${selectedPlant.name}</h4>
+                    <small>${selectedPlant.spacing_per_sqft} plants per sqft</small>
+                </div>
+                <button class="clear-btn" onclick="clearSelectedPlant()">✕</button>
+            `;
+            
+            // Show companion info
+            infoContainer.style.display = 'block';
+            
+            const goodContainer = document.getElementById('good-companions');
+            const badContainer = document.getElementById('bad-companions');
+            
+            goodContainer.innerHTML = selectedPlant.companions.slice(0, 8).map(id => {
+                const p = plants.find(x => x.id === id);
+                return `<span class="companion-tag good">${PLANT_EMOJIS[id] || '🌱'} ${p?.name || id}</span>`;
+            }).join('') || '<span style="opacity:0.5">None</span>';
+            
+            badContainer.innerHTML = selectedPlant.antagonists.slice(0, 8).map(id => {
+                const p = plants.find(x => x.id === id);
+                return `<span class="companion-tag bad">${PLANT_EMOJIS[id] || '🌱'} ${p?.name || id}</span>`;
+            }).join('') || '<span style="opacity:0.5">None</span>';
+        }
+
+        function clearSelectedPlant() {
+            selectedPlant = null;
+            renderSelectedPlant();
+        }
+
+        function addToQueue(plantId) {
+            plantingQueue.push(plantId);
+            renderQueue();
+        }
+
+        function removeFromQueue(index) {
+            plantingQueue.splice(index, 1);
+            renderQueue();
+        }
+
+        function renderQueue() {
+            const container = document.getElementById('queue-list');
+            if (plantingQueue.length === 0) {
+                container.innerHTML = '<span style="opacity: 0.5; font-size: 0.85rem;">Queue empty</span>';
+                return;
+            }
+            container.innerHTML = plantingQueue.map((id, idx) => {
+                const plant = plants.find(p => p.id === id);
+                return `
+                    <div class="queue-item">
+                        ${PLANT_EMOJIS[id] || '🌱'} ${plant?.name || id}
+                        <span class="remove" onclick="removeFromQueue(${idx})">✕</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function highlightCompanions(idx) {
+            const cell = grid[idx];
+            if (!cell.plant_id) return;
+            
+            const plant = plants.find(p => p.id === cell.plant_id);
+            if (!plant) return;
+            
+            const cells = document.querySelectorAll('.grid-cell');
+            grid.forEach((c, i) => {
+                if (i === idx || !c.plant_id) return;
+                if (plant.companions.includes(c.plant_id)) {
+                    cells[i].classList.add('companion-highlight');
+                }
+                if (plant.antagonists.includes(c.plant_id)) {
+                    cells[i].classList.add('antagonist-highlight');
+                }
+            });
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.grid-cell').forEach(cell => {
+                cell.classList.remove('companion-highlight', 'antagonist-highlight');
+            });
+        }
+
+        // Bed management
+        function addBed() {
+            const newId = beds.length;
+            beds.push({ id: newId, name: `Bed ${newId + 1}`, cells: new Set() });
+            currentBedIndex = newId;
+            renderBedTabs();
+            setMode('draw');
+        }
+
+        function selectBed(index) {
+            currentBedIndex = index;
+            renderBedTabs();
+        }
+
+        function renderBedTabs() {
+            const container = document.getElementById('beds-tabs');
+            container.innerHTML = beds.map((bed, i) => `
+                <button class="bed-tab ${i === currentBedIndex ? 'active' : ''}" 
+                        onclick="selectBed(${i})" data-bed="${i}">
+                    🌿 ${bed.name}
+                </button>
+            `).join('') + '<button class="add-bed-btn" onclick="addBed()">+ Add Bed</button>';
+        }
+
+        async function optimizeGarden() {
+            // Get plants to place - either from queue or selected plant
+            let plantsToPlace = [...plantingQueue];
+            
+            // If queue is empty but we have a selected plant, use that
+            if (plantsToPlace.length === 0 && selectedPlant) {
+                plantsToPlace = [selectedPlant.id];
+            }
+            
+            if (plantsToPlace.length === 0) {
+                alert('Select a plant first! Search for a plant and click on it.');
+                return;
+            }
+            
+            // Build garden object from active cells only
+            const activeCells = grid.filter(c => c.active);
+            if (activeCells.length === 0) {
+                alert('Draw some garden beds first!');
+                return;
+            }
+            
+            // Count empty cells
+            const emptyCells = activeCells.filter(c => !c.plant_id);
+            if (emptyCells.length === 0) {
+                alert('All garden cells are already filled!');
+                return;
+            }
+            
+            // Expand the plants list to fill all empty cells (cycle through queue)
+            const expandedPlants = [];
+            for (let i = 0; i < emptyCells.length; i++) {
+                expandedPlants.push(plantsToPlace[i % plantsToPlace.length]);
+            }
+            
+            const gardenObj = {
+                width: canvasWidth,
+                height: canvasHeight,
+                grid: activeCells.map(c => ({ x: c.x, y: c.y, plant_id: c.plant_id }))
+            };
+            
+            try {
+                const response = await fetch('/optimize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ garden: gardenObj, plants_to_place: expandedPlants })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert(error.detail || 'Optimization failed');
+                    return;
+                }
+                
+                const result = await response.json();
+                
+                // Apply results back to grid
+                result.grid.forEach(cell => {
+                    const idx = cell.y * canvasWidth + cell.x;
+                    if (grid[idx]) {
+                        grid[idx].plant_id = cell.plant_id;
+                    }
+                });
+                
+                plantingQueue = [];
+                renderCanvas();
+                renderQueue();
+            } catch (e) {
+                console.error('Optimization failed:', e);
+                alert('Optimization failed. Check console for details.');
+            }
+        }
+
+        async function updateScore() {
+            const activeCells = grid.filter(c => c.active);
+            if (activeCells.length === 0) {
+                document.getElementById('score').textContent = '0';
+                return;
+            }
+            
+            const gardenObj = {
+                width: canvasWidth,
+                height: canvasHeight,
+                grid: activeCells.map(c => ({ x: c.x, y: c.y, plant_id: c.plant_id }))
+            };
+            
+            try {
+                const response = await fetch('/score', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(gardenObj)
+                });
+                const data = await response.json();
+                document.getElementById('score').textContent = data.score;
+            } catch (e) {
+                console.error('Failed to calculate score:', e);
+            }
+        }
+
+        function clearPlants() {
+            grid.forEach(cell => { cell.plant_id = null; });
+            plantingQueue = [];
+            renderCanvas();
+            renderQueue();
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`.main-tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+            
+            if (tab === 'schedule') {
+                updateSchedule();
+            }
+        }
+
+        // Frost dates by zone (average dates)
+        const FROST_DATES = {
+            3: { last: 'May 15', first: 'Sep 15' },
+            4: { last: 'May 15', first: 'Sep 25' },
+            5: { last: 'Apr 30', first: 'Oct 10' },
+            6: { last: 'Apr 15', first: 'Oct 15' },
+            7: { last: 'Apr 15', first: 'Oct 25' },
+            8: { last: 'Mar 25', first: 'Nov 10' },
+            9: { last: 'Feb 15', first: 'Dec 1' },
+            10: { last: 'Jan 30', first: 'Dec 15' }
+        };
+
+        function parseDate(dateStr, year) {
+            const months = { 'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+                            'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11 };
+            const parts = dateStr.split(' ');
+            return new Date(year, months[parts[0]], parseInt(parts[1]));
+        }
+
+        function formatDate(date) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${months[date.getMonth()]} ${date.getDate()}`;
+        }
+
+        function addWeeks(date, weeks) {
+            const result = new Date(date);
+            result.setDate(result.getDate() + weeks * 7);
+            return result;
+        }
+
+        async function updateSchedule() {
+            const zone = document.getElementById('zone-select').value;
+            const frostDates = FROST_DATES[zone];
+            
+            // Update frost date display
+            document.getElementById('last-frost').textContent = frostDates.last;
+            document.getElementById('first-frost').textContent = frostDates.first;
+            
+            // Get unique plants in garden
+            const gardenPlants = [...new Set(grid.filter(c => c.plant_id).map(c => c.plant_id))];
+            
+            const emptyEl = document.getElementById('schedule-empty');
+            const timelineEl = document.getElementById('schedule-timeline');
+            
+            if (gardenPlants.length === 0) {
+                emptyEl.style.display = 'block';
+                timelineEl.innerHTML = '';
+                return;
+            }
+            
+            emptyEl.style.display = 'none';
+            
+            // Fetch full schedule for the zone
+            try {
+                const response = await fetch(`/schedule/${zone}a`);  // Use 'a' sub-zone
+                if (!response.ok) {
+                    console.error('Failed to fetch schedule');
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                // Filter to only plants in the garden
+                const scheduleItems = data.schedule
+                    .filter(item => gardenPlants.includes(item.plant_id))
+                    .map(item => ({
+                        date: new Date(item.date),
+                        action: item.action,
+                        actionLabel: item.action.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+                        plantId: item.plant_id,
+                        plantName: item.plant_name,
+                        emoji: PLANT_EMOJIS[item.plant_id] || '🌱',
+                        notes: item.notes
+                    }));
+                
+                // Sort by date
+                scheduleItems.sort((a, b) => a.date - b.date);
+                
+                // Group by month
+                const months = {};
+                scheduleItems.forEach(item => {
+                    const monthKey = `${item.date.getFullYear()}-${String(item.date.getMonth() + 1).padStart(2, '0')}`;
+                    const monthName = item.date.toLocaleString('default', { month: 'long', year: 'numeric' });
+                    if (!months[monthKey]) {
+                        months[monthKey] = { name: monthName, items: [] };
+                    }
+                    months[monthKey].items.push(item);
+                });
+                
+                // Render timeline
+                timelineEl.innerHTML = Object.entries(months).map(([key, month]) => `
+                    <div class="schedule-month">
+                        <h4>${month.name}</h4>
+                        ${month.items.map(item => `
+                            <div class="schedule-item" title="${item.notes || ''}">
+                                <span class="emoji">${item.emoji}</span>
+                                <span class="plant-name">${item.plantName}</span>
+                                <span class="action ${item.action}">${item.actionLabel}</span>
+                                <span class="date">${formatDate(item.date)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+                
+            } catch (e) {
+                console.error('Failed to fetch schedule:', e);
+                timelineEl.innerHTML = '<p style="opacity: 0.7; text-align: center;">Failed to load schedule</p>';
+            }
+            
+            // Show export button if there are plants
+            document.getElementById('export-btn').style.display = gardenPlants.length > 0 ? 'block' : 'none';
+        }
+
+        function toggleZoneMap() {
+            const container = document.getElementById('zone-map-container');
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function exportGardenPlan() {
+            const zone = document.getElementById('zone-select').value;
+            const frostDates = FROST_DATES[zone];
+            
+            // Get unique plants in garden
+            const gardenPlants = [...new Set(grid.filter(c => c.plant_id).map(c => c.plant_id))];
+            if (gardenPlants.length === 0) {
+                alert('Add plants to your garden first!');
+                return;
+            }
+            
+            // Create a canvas to draw the garden image
+            const canvas = document.createElement('canvas');
+            const cellSize = 60;
+            const padding = 20;
+            canvas.width = canvasWidth * cellSize + padding * 2;
+            canvas.height = canvasHeight * cellSize + padding * 2;
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#3e2723';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid
+            grid.forEach((cell, idx) => {
+                const x = padding + cell.x * cellSize;
+                const y = padding + cell.y * cellSize;
+                
+                // Cell background
+                ctx.fillStyle = cell.active ? '#8B4513' : '#3e2723';
+                ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+                
+                // Plant emoji
+                if (cell.plant_id) {
+                    ctx.font = '32px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(PLANT_EMOJIS[cell.plant_id] || '🌱', x + cellSize/2, y + cellSize/2);
+                }
+            });
+            
+            // Convert canvas to image data URL
+            const gardenImageUrl = canvas.toDataURL('image/png');
+            
+            // Fetch plant care data
+            const plantCareData = {};
+            for (const plantId of gardenPlants) {
+                const plant = plants.find(p => p.id === plantId);
+                if (plant) {
+                    plantCareData[plantId] = plant;
+                }
+            }
+            
+            // Fetch schedule
+            let scheduleData = [];
+            try {
+                const response = await fetch(`/schedule/${zone}a`);
+                if (response.ok) {
+                    const data = await response.json();
+                    scheduleData = data.schedule.filter(item => gardenPlants.includes(item.plant_id));
+                }
+            } catch (e) {
+                console.error('Failed to fetch schedule:', e);
+            }
+            
+            // Create the export HTML document
+            const exportHtml = generateExportHtml(gardenImageUrl, plantCareData, scheduleData, zone, frostDates);
+            
+            // Download as HTML file
+            const blob = new Blob([exportHtml], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `garden-plan-zone-${zone}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function generateExportHtml(gardenImageUrl, plantCareData, scheduleData, zone, frostDates) {
+            const plantCareHtml = Object.values(plantCareData).map(plant => {
+                const care = plant.care || {};
+                const emoji = PLANT_EMOJIS[plant.id] || '🌱';
+                return `
+                <div class="plant-card">
+                    <h3>${emoji} ${plant.name}</h3>
+                    <div class="care-grid">
+                        <div class="care-item">
+                            <strong>💧 Watering:</strong>
+                            <p>${care.watering || 'No specific info'}</p>
+                            <p class="frequency">${care.watering_frequency || ''}</p>
+                        </div>
+                        <div class="care-item">
+                            <strong>☀️ Sunlight:</strong>
+                            <p>${care.sunlight || 'Full sun'}</p>
+                        </div>
+                        ${care.fertilizing ? `
+                        <div class="care-item">
+                            <strong>🌱 Fertilizing:</strong>
+                            <p>${care.fertilizing}</p>
+                        </div>` : ''}
+                        ${care.pests ? `
+                        <div class="care-item">
+                            <strong>🐛 Pests:</strong>
+                            <p>${care.pests}</p>
+                        </div>` : ''}
+                        ${care.harvesting ? `
+                        <div class="care-item">
+                            <strong>🧺 Harvesting:</strong>
+                            <p>${care.harvesting}</p>
+                        </div>` : ''}
+                        ${care.tips && care.tips.length > 0 ? `
+                        <div class="care-item tips">
+                            <strong>💡 Tips:</strong>
+                            <ul>${care.tips.map(tip => `<li>${tip}</li>`).join('')}</ul>
+                        </div>` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+            
+            // Group schedule by month
+            const scheduleByMonth = {};
+            scheduleData.forEach(item => {
+                const date = new Date(item.date);
+                const monthKey = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+                if (!scheduleByMonth[monthKey]) scheduleByMonth[monthKey] = [];
+                scheduleByMonth[monthKey].push({
+                    ...item,
+                    dateStr: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                    emoji: PLANT_EMOJIS[item.plant_id] || '🌱'
+                });
+            });
+            
+            const scheduleHtml = Object.entries(scheduleByMonth).map(([month, items]) => `
+                <div class="month-section">
+                    <h4>${month}</h4>
+                    ${items.map(item => `
+                        <div class="schedule-row ${item.action}">
+                            <span class="date">${item.dateStr}</span>
+                            <span class="emoji">${item.emoji}</span>
+                            <span class="plant">${item.plant_name}</span>
+                            <span class="action-tag">${item.action.replace(/_/g, ' ')}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+            
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Plan - Zone ${zone}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d5016 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 10px; font-size: 2rem; }
+        h2 { margin: 30px 0 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        h4 { margin-bottom: 10px; font-size: 1.1rem; opacity: 0.9; }
+        .zone-info { text-align: center; opacity: 0.8; margin-bottom: 30px; }
+        .garden-image { text-align: center; margin: 20px 0; }
+        .garden-image img { max-width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .plant-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .care-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .care-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; }
+        .care-item strong { display: block; margin-bottom: 5px; }
+        .care-item p { opacity: 0.9; line-height: 1.5; }
+        .care-item .frequency { font-size: 0.85rem; opacity: 0.7; margin-top: 5px; }
+        .care-item.tips { grid-column: 1 / -1; }
+        .care-item ul { margin-left: 20px; margin-top: 10px; }
+        .care-item li { margin-bottom: 5px; opacity: 0.9; }
+        .month-section { margin-bottom: 25px; }
+        .schedule-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+        .schedule-row .date { min-width: 60px; font-weight: 500; }
+        .schedule-row .emoji { font-size: 1.3rem; }
+        .schedule-row .plant { flex: 1; }
+        .schedule-row .action-tag {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            text-transform: capitalize;
+        }
+        .schedule-row.start_indoors .action-tag { background: #9c27b0; }
+        .schedule-row.transplant .action-tag { background: #2196F3; }
+        .schedule-row.direct_sow .action-tag { background: #4CAF50; }
+        .schedule-row.fall_direct_sow .action-tag, .schedule-row.fall_transplant .action-tag { background: #ff9800; }
+        .legend { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; font-size: 0.9rem; }
+        .legend span { padding: 4px 12px; border-radius: 12px; }
+        @media print {
+            body { background: white; color: black; }
+            .plant-card, .care-item, .schedule-row { border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Garden Plan</h1>
+        <p class="zone-info">Zone ${zone} | Last Frost: ${frostDates.last} | First Frost: ${frostDates.first}</p>
+        
+        <div class="garden-image">
+            <img src="${gardenImageUrl}" alt="Garden Layout">
+        </div>
+        
+        <h2>📅 Planting Schedule</h2>
+        <div class="legend">
+            <span style="background: #9c27b0; color: white;">Start Indoors</span>
+            <span style="background: #2196F3; color: white;">Transplant</span>
+            <span style="background: #4CAF50; color: white;">Direct Sow</span>
+            <span style="background: #ff9800; color: white;">Fall Planting</span>
+        </div>
+        ${scheduleHtml || '<p>No schedule data available</p>'}
+        
+        <h2>🌿 Plant Care Guide</h2>
+        ${plantCareHtml}
+        
+        <p style="text-align: center; margin-top: 40px; opacity: 0.6; font-size: 0.85rem;">
+            Generated by Garden God on ${new Date().toLocaleDateString()}
+        </p>
+    </div>
+</body>
+</html>`;
+        }
+
+        init();
+    </script>
+</body>
+</html>
